@@ -1,0 +1,69 @@
+#include <stdio.h> 
+#include <stdlib.h>  
+#include <locale.h>
+#include "usuario.h"
+#include "outrasFuncoes.h"
+
+
+int main(void) { 
+	//setlocale para uso de acentos
+    setlocale(LC_ALL, "");
+    printf("Bem vindo ao FEITV!\n"); 
+    int opcao; 
+    int idade;
+    char nomeUsuario[100];
+    char email[50];
+    char senha[50];
+
+    do{ 
+        printf("Digite: \n1-Login \n2-Cadastro \n0-Sair \n"); 
+        scanf("%d", &opcao); 
+        getchar();
+        if(opcao == 1){ 
+
+            printf("Digite seu email: \n");
+            fgets(email, 50, stdin);
+            removerEnter(email);
+
+            printf("Digite sua senha: \n");
+            fgets(senha, 50, stdin);
+            removerEnter(senha);
+            system("cls");
+            loginUsuario(email, senha); 
+
+        } else if (opcao == 2){ 
+            printf("Digite seu nome: \n");
+            fgets(nomeUsuario, 100, stdin);
+            removerEnter(nomeUsuario);
+
+            printf("Digite sua idade: \n");
+            scanf("%d", &idade);
+            getchar();
+
+            printf("Digite seu email: \n");
+            fgets(email, 50, stdin);
+            removerEnter(email);
+
+            printf("Digite a sua senha: \n");
+            fgets(senha, 50, stdin);
+            removerEnter(senha);
+            system("cls");
+            cadastroUsuario(nomeUsuario, idade, email, senha); 
+
+        } else if(opcao == 0){ 
+            system("cls");
+            printf("Saindo...\n"); 
+            break; 
+
+        } else { 
+            system("cls");
+            printf("Opção inválida! Digite enter e tente novamente...");
+            getchar();
+            system("cls");
+
+        } 
+    } while (opcao != 0); 
+    
+    system("pause");
+	return 0; 
+}

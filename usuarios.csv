@@ -1,0 +1,2 @@
+void loginUsuario(char email[], char senha[]);
+void cadastroUsuario(char nomeUsuario[], int idade, char email[], char senha[]);

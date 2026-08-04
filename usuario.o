@@ -1,0 +1,55 @@
+#include "usuario.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "menuUsuario.h"
+#include "playlist.h"
+
+void loginUsuario(char emailEntrada[], char senhaEntrada[]){
+    FILE *arquivo;
+
+    int encontrou = 0;
+    char nome[100];
+    int idade;
+    char email[50];
+    char senha[50];
+
+    arquivo = fopen("usuarios.csv", "r");
+    
+    if(arquivo == NULL){
+    	printf("Erro ao abrir usuarios.csv\n");
+    	return;
+	}
+	
+    while (fscanf(arquivo, "%[^;];%d;%[^;];%[^\n]\n", nome, &idade,email, senha) == 4) {
+        //strcmp retorna um numero, 0 se as strings forem iguais
+        if (strcmp(email, emailEntrada) == 0 && strcmp(senha, senhaEntrada) == 0) { 
+            encontrou = 1;
+            break;
+        }
+    }
+
+    if (!encontrou) {
+        system("cls");
+        printf("Email ou senha incorretos.\n");
+        printf("Aperte enter e tente novamente...\n");
+        getchar();
+        system("cls");
+        return;
+    }
+    system("cls");
+    printf("\nLogin realizado com sucesso!\n");
+    menuUsuario();
+
+    fclose(arquivo);
+}
+
+void cadastroUsuario(char nomeUsuario[], int idade, char email[], char senha[]){
+    FILE *arquivo;
+    arquivo = fopen("usuarios.csv", "a");
+    fprintf(arquivo, "%s;%d;%s;%s\n", nomeUsuario, idade, email, senha);
+    fclose(arquivo);
+    system("cls");
+    printf("Usuário cadastrado com sucesso!\n"); 
+    menuUsuario();
+}

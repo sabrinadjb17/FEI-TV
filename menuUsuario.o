@@ -1,0 +1,85 @@
+#include "menuUsuario.h"
+#include "videos.h"
+#include "menuPlaylist.h"
+#include "outrasFuncoes.h"
+#include <stdio.h>
+#include <stdlib.h>  
+
+void menuUsuario() {
+    int opcao;
+    char nomeVideo[50];
+    char emailUsuario[50];
+
+    do {
+        printf("\nBem vindo ao Menu Usuario!\n");
+        printf("Digite:\n1-Buscar video\n2-Curtir/Descurtir video\n3-Gerenciar playlists\n0-Sair\n");
+        
+        scanf("%d", &opcao);
+        getchar();
+
+        if (opcao == 1) {
+            printf("Digite o nome do video:\n");
+            fgets(nomeVideo, 50, stdin);
+            removerEnter(nomeVideo);
+
+            system("cls");
+            buscarVideo(nomeVideo);
+
+        } else if (opcao == 2) {
+            int opcaoCurtir;
+
+            printf("\nDigite:\n1-Curtir video\n2-Remover curtida\n");
+            scanf("%d", &opcaoCurtir);
+            getchar();
+
+            if (opcaoCurtir == 1) {
+                printf("Digite o nome do video:\n");
+                fgets(nomeVideo, 50, stdin);
+                removerEnter(nomeVideo);
+
+                printf("Digite seu email de login: \n");
+                fgets(emailUsuario, 50, stdin);
+                removerEnter(emailUsuario);
+
+                system("cls");
+                curtirVideo(emailUsuario, nomeVideo);
+
+            } else if (opcaoCurtir == 2) {
+                printf("Digite o nome do video:\n");
+                fgets(nomeVideo, 50, stdin);
+                removerEnter(nomeVideo);
+
+                printf("Digite seu email de login: \n");
+                fgets(emailUsuario, 50, stdin);
+                removerEnter(emailUsuario);
+
+                system("cls");
+                removerCurtida(emailUsuario, nomeVideo);
+
+            } else {
+                system("cls");
+                printf("Opção invalida!\n");
+                printf("Digite enter e tente novamente...\n");
+                getchar();
+                system("cls");
+            }
+
+        } else if (opcao == 3) {
+            system("cls");
+            printf("Entrando no menu playlist...\n");
+            menuPlaylist();
+
+        } else if (opcao == 0) {
+            system("cls");
+            printf("Saindo...\n");
+            exit(0);
+
+        } else {
+            system("cls");
+            printf("Opção invalida! Digite enter e tente novamente...\n");
+            getchar();
+            system("cls");
+        }
+
+    } while (opcao != 0);
+}

@@ -1,0 +1,122 @@
+#include "menuPlaylist.h"
+#include "playlist.h"
+#include "outrasFuncoes.h"
+#include "videos.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+void menuPlaylist() {
+    int opcao;
+
+    char emailUsuario[50];
+    char novoNomePlaylist[50];
+    char antigoNomePlaylist[50];
+    char nomePlaylist[50];
+    char nomeVideo[50];
+
+    do {
+        printf("\nBem vindo ao Menu de playlists!\n");
+        printf("Digite:\n1-Criar playlist\n2-Editar playlist\n3-Excluir playlist\n4-Voltar ao menu anterior\n0-Sair\n");
+
+        scanf("%d", &opcao);
+        getchar();
+
+        if (opcao == 1) {
+            printf("Digite seu email de login:\n");
+            fgets(emailUsuario, 50, stdin);
+            removerEnter(emailUsuario);
+
+            printf("Digite o nome da playlist:\n");
+            fgets(nomePlaylist, 50, stdin);
+            removerEnter(nomePlaylist);
+
+            system("cls");
+            criarPlaylist(emailUsuario, nomePlaylist);
+
+        } else if (opcao == 2) {
+            int opcaoEdicao;
+
+            printf("\n1-Renomear\n2-Adicionar video\n3-Remover video\n0-Voltar\n");
+            scanf("%d", &opcaoEdicao);
+            getchar();
+
+            if (opcaoEdicao == 1) {
+                printf("Digite seu email de login: \n");
+                fgets(emailUsuario, 50, stdin);
+                removerEnter(emailUsuario);
+
+                printf("Digite o nome atual da playlist:\n");
+                fgets(antigoNomePlaylist, 50, stdin);
+                removerEnter(antigoNomePlaylist);
+
+                printf("Digite o novo nome:\n");
+                fgets(novoNomePlaylist, 50, stdin);
+                removerEnter(novoNomePlaylist);
+
+                system("cls");
+                renomearPlaylist(emailUsuario, antigoNomePlaylist, novoNomePlaylist);
+
+            } else if (opcaoEdicao == 2) {
+                printf("Digite seu email de login: \n");
+                fgets(emailUsuario, 50, stdin);
+                removerEnter(emailUsuario);
+                
+                printf("Digite o nome da playlist:\n");
+                fgets(nomePlaylist, 50, stdin);
+                removerEnter(nomePlaylist);
+
+                printf("Digite o nome do video:\n");
+                fgets(nomeVideo, 50, stdin);
+                removerEnter(nomeVideo);
+
+                system("cls");
+                adicionarVideo(emailUsuario, nomePlaylist, nomeVideo);
+
+            } else if (opcaoEdicao == 3) {
+                printf("Digite seu email de login: \n");
+                fgets(emailUsuario, 50, stdin);
+                removerEnter(emailUsuario);
+
+                printf("Digite o nome da playlist:\n");
+                fgets(nomePlaylist, 50, stdin);
+                removerEnter(nomePlaylist);
+
+                printf("Digite o nome do video:\n");
+                fgets(nomeVideo, 50, stdin);
+                removerEnter(nomeVideo);
+
+                system("cls");
+                removerVideo(emailUsuario, nomePlaylist, nomeVideo);
+            }
+
+        } else if (opcao == 3) {
+            printf("Digite seu email de login: \n");
+            fgets(emailUsuario, 50, stdin);
+            removerEnter(emailUsuario);
+
+            printf("Digite o nome da playlist:\n");
+            fgets(nomePlaylist, 50, stdin);
+            removerEnter(nomePlaylist);
+
+            system("cls");
+            excluirPlaylist(emailUsuario, nomePlaylist);
+        
+        } else if(opcao == 4){
+            system("cls");
+            printf("\nVoltando ao menu Usuário..\n");
+            return;
+        } else if (opcao == 0) {
+            system("cls");
+            printf("Saindo...\n");
+            exit(0);
+
+        } else {
+            system("cls");
+            printf("Opcao invalida!\n");
+            printf("Digite enter para tentar novamente...\n");
+            getchar();
+            system("cls");
+        }
+
+    } while (opcao != 0);
+}
