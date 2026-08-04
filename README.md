@@ -119,6 +119,40 @@ Com ele foi possível aprender sobre:
 
 ---
 
+# 📸 Demonstração
+
+Confira abaixo algumas telas do sistema durante sua execução.
+
+### 📝 Menu de Cadastro
+
+Tela responsável pelo cadastro de novos usuários na plataforma.
+
+<p align="center">
+  <img src="./img/menu_cadastro.png" alt="Menu de Cadastro" width="800">
+</p>
+
+---
+
+### 👤 Menu do Usuário
+
+Após realizar o login, o usuário pode acessar as principais funcionalidades do sistema, como visualizar vídeos e gerenciar suas playlists.
+
+<p align="center">
+  <img src="./img/menu_usuario.png" alt="Menu do Usuário" width="800">
+</p>
+
+---
+
+### 🎀 Menu de Playlists
+
+Área destinada ao gerenciamento das playlists, permitindo criar, visualizar, adicionar ou remover vídeos de forma organizada.
+
+<p align="center">
+  <img src="./img/menu_playlist.png" alt="Menu de Playlists" width="800">
+</p>
+
+---
+
 <div align="center">
 
 ### 🌷 Desenvolvido por Sabrina de Jesus Braz
